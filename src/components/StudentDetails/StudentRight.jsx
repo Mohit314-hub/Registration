@@ -1,8 +1,21 @@
 import React, { useState } from 'react'; // Import React and useState
 
 import '../main.css';
+import Popup from '../PopUp/Popup';
 
 export default function StudentRight() {
+
+  //using useState to store the state of the popup
+  const [isPopupOpen, setPopupOpen] = useState(false);
+
+  const openPopup = () => {
+    setPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setPopupOpen(false);
+  };
+
   // Define state variables to store the input values
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -87,11 +100,12 @@ export default function StudentRight() {
         </div>
 
         <div className="mt-auto justify-content-end d-flex">
-          <button type="submit" className="btn btn-primary btn-lg rounded register-btn">
+          <button type="submit" className="btn btn-primary btn-lg rounded register-btn" onClick={openPopup}>
             Register
           </button>
         </div>
       </form>
+      <Popup isOpen={isPopupOpen} onClose={closePopup} />
     </div>
   );
 }
